@@ -21,8 +21,13 @@ int main()
     cout << "Your integer isn't more or equal to 5" << endl;
 
     // A simple For loop
+    int start, end;
+    cout << "Enter the starting integer: " << endl;
+    cin >> start;
+    cout << "Enter the ending integer: " << endl;
+    cin >> end;
     int x = 0;
-    for (int i = 1; i <= 100; i++)
+    for (int i = start; i <= end; i++)
     {
         x += i;
     }
