@@ -26,7 +26,6 @@ vector<char> vc(5,'a');
      for (auto it=vi.begin();it< vi.end();it++)  {  
          *it=*it*2;
          cout<<*it<<endl;
-     }   
- 
+}        
  printV(vi);
 }
