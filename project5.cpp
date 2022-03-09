@@ -1,54 +1,90 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-struct Distance
+class Distance
 {
+private:
     int feet, yards, miles;
+
+public:
+    Distance()
+    {
+        miles = 0;
+        yards = 0;
+        feet = 0;
+    }
+    int getFeet() { return feet; }
+    int getYards() { return yards; }
+    int getMiles() { return miles; }
+
+    void addMiles(int m);
+    void addYards(int y);
+    void addFeet(int f);
+    void convertFeet(int f);
+    void convertYards(int y);
 };
-Distance ConvertYards(int yards);
-Distance ConvertFeet(int feet);
-void PrintDistance(Distance distance);
+
+string formatted(Distance t)
+{
+    return to_string(t.getFeet()) + " ft " +
+           to_string(t.getYards()) + " yds " +
+           to_string(t.getMiles()) + " miles";
+}
+
 int main()
 {
     Distance d1;
     Distance d2;
-    int x, y;
-    cout << "Enter the value in yards: " << endl;
-    cin >> x;
-    cout << "Enter the value in feet: " << endl;
-    cin >> y;
-    d1 = ConvertYards(x);
-    PrintDistance(d1);
+    d1.convertFeet(6002);
+    d2.convertYards(5230);
+    cout << "6002 ft = " << formatted(d1) << endl;
+    cout << "5230 yd = " << formatted(d2) << endl;
 
-    d2 = ConvertFeet(y);
-    PrintDistance(d2);
-    return 0;
+    cout << "(" << formatted(d1) << ")";
+    d1.addFeet(10001);
+    cout << " + 10001 ft = " << formatted(d1) << endl;
+
+    cout << "(" << formatted(d1) << ")";
+    d1.addYards(5000);
+    cout << " + 5000 yd = " << formatted(d1) << endl;
+
+    cout << "(" << formatted(d1) << ")";
+    d1.addMiles(10);
+    cout << " + 10 miles = " << formatted(d1) << endl;
 }
-
-Distance ConvertYards(int yards)
+void Distance::addMiles(int m)
 {
-    Distance d;
-    d.feet = 0;
-    d.yards = yards % 1760;
-    d.miles = yards / 1760;
-    return d;
+    miles += m;
 }
-
-Distance ConvertFeet(int feet)
+void Distance::addYards(int y)
 {
-    Distance d;
-    d.miles = feet / 5280;
-    int yrds = feet - d.miles * 5280;
-    d.yards = yrds / 3;
-    d.feet = feet - d.miles * 5280 - d.yards * 3;
-    return d;
+    yards += y;
+    Distance temp;
+    temp.convertYards(yards);
+    yards = temp.getYards();
+    miles += temp.getMiles();
 }
 
-void PrintDistance(Distance dist)
+void Distance::addFeet(int f)
 {
-    cout << "Feet: " << dist.feet << endl;
-    cout << "Yards: " << dist.yards << endl;
-    cout << "Miles: " << dist.miles << endl;
+    feet += f;
+    Distance temp;
+    temp.convertFeet(feet);
+    feet = temp.getFeet();
+    addYards(temp.getYards());
+    miles += temp.getMiles();
+}
+void Distance::convertFeet(int f)
+{
+    miles = f / 5280;
+    yards = (f % 5280) / 3;
+    feet = (f % 5280) % 3;
 }
 
-void Add()
+void Distance::convertYards(int y)
+{
+    miles = y / 1760;
+    yards = y % 1760;
+    feet = 0;
+}
