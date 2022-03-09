@@ -14,9 +14,9 @@ public:
         yards = 0;
         feet = 0;
     }
-    int getFeet() { return feet; }
-    int getYards() { return yards; }
-    int getMiles() { return miles; }
+    int getFeet();
+    int getYards();
+    int getMiles();
 
     void addMiles(int m);
     void addYards(int y);
@@ -53,10 +53,15 @@ int main()
     d1.addMiles(10);
     cout << " + 10 miles = " << formatted(d1) << endl;
 }
+int Distance::getFeet() { return feet; }
+int Distance::getYards() { return yards; }
+int Distance::getMiles() { return miles; }
+
 void Distance::addMiles(int m)
 {
     miles += m;
 }
+
 void Distance::addYards(int y)
 {
     yards += y;
@@ -75,6 +80,7 @@ void Distance::addFeet(int f)
     addYards(temp.getYards());
     miles += temp.getMiles();
 }
+
 void Distance::convertFeet(int f)
 {
     miles = f / 5280;
