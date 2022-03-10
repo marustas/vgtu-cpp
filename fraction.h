@@ -1,15 +1,20 @@
-#ifndef _FRACTION_   
+#ifndef _FRACTION_
 #define _FRACTION_
 class Fraction
 {
 public:
-  Fraction(int n = 0, int d = 1);
-  int getNumerator() const;
-  int getDenominator() const;
+  Fraction();
+  Fraction(int initNumerator, int initDenominator);
+  int GetNumerator() const;
+  int GetDenominator() const;
 
-  Fraction operator+(const Fraction f2) const;
+  Fraction Add(Fraction frac1) const;
+  Fraction Subtract(Fraction frac1) const;
+  Fraction Multiply(Fraction frac1) const;
+  Fraction Divide(Fraction frac1) const;
+
 private:
-  int Numerator,Denominator; 
+  int Numerator, Denominator;
 };
 
 #endif
