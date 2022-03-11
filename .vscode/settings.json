@@ -5,7 +5,8 @@
         "ostream": "cpp",
         "iterator": "cpp",
         "ios": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "vector": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
