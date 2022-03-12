@@ -1,79 +1,40 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 using namespace std;
-class Product
-{
-private:
-    int number, quantity, price;
-    vector<int> productRecord;
-
-public:
-    Product();
-    Product(int initNumber, int initQuantity, int initPrice);
-    int GetNumber() const;
-    int GetQuantity() const;
-    int GetPrice() const;
-    int GetTotal() const;
-    void SetNumber();
-    void SetQuantity();
-    void SetPrice();
-    void printProduct();
-};
-
-Product::Product()
-{
-    number = 0;
-    quantity = 0;
-    price = 0;
-}
-
-Product::Product(int initNumber, int initQuantity, int initPrice)
-{
-    number = initNumber;
-    quantity = initQuantity;
-    price = initPrice;
-}
-void Product::printProduct()
-{
-    Product pr;
-    pr.SetNumber();
-    pr.SetQuantity();
-    pr.SetPrice();
-    cout << "The number is " << pr.GetNumber() << ","
-         << "The quantity is " << pr.GetQuantity() << ","
-         << "The price is " << pr.GetPrice() << ","
-         << "The total price for the product is " << pr.GetTotal() << endl;
-}
-void Product::SetNumber()
-{
-    cout << "Enter the number of the product:" << endl;
-    cin >> number;
-    productRecord.push_back(number);
-}
-void Product::SetQuantity()
-{
-    cout << "Enter the quantity of the product:" << endl;
-    cin >> quantity;
-    productRecord.push_back(quantity);
-}
-void Product::SetPrice()
-{
-    cout << "Enter the price of the product:" << endl;
-    cin >> price;
-    productRecord.push_back(price);
-}
-
-int Product::GetNumber() const { return number; }
-int Product::GetQuantity() const { return quantity; }
-int Product::GetPrice() const { return price; }
-int Product::GetTotal() const { return quantity * price; }
 
 int main()
 {
-    Product product1;
-    Product product2;
-    Product product3;
-    product1.printProduct();
-    product2.printProduct();
-    product3.printProduct();
+    vector<int> number;
+    vector<int> quantity;
+    vector<int> price;
+
+    while (true)
+    {
+        cout << "Enter a record(product number, quantity, unit cost separated by spaces): ";
+        int n, q, p;
+        cin >> n >> q >> p;
+
+        number.push_back(n);
+        quantity.push_back(q);
+        price.push_back(p);
+
+        cout << "Do you want to enter another record (y or n): ";
+        char answer;
+        cin >> answer;
+        if (answer == 'n')
+            break;
+    }
+
+    int total_cost = 0;
+    for (int i = 0; i < number.size(); ++i)
+    {
+        auto cost = quantity[i] * price[i];
+        total_cost += cost;
+        cout << "Number: " << number[i] << ", "
+             << "Quantity: " << quantity[i] << ", "
+             << "Price: " << price[i] << ", "
+             << "Price of the product: " << cost << endl;
+    }
+    cout << "Total cost of the products:  " << total_cost << endl;
 }
