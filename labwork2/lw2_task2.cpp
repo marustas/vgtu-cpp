@@ -76,5 +76,4 @@ int main()
     product1.printProduct();
     product2.printProduct();
     product3.printProduct();
-    cout << "The total price for all products is " << product2.GetTotal() + product1.GetTotal() << endl;
 }
