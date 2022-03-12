@@ -8,7 +8,7 @@ int main()
 {
     int x;
     vector<int> values;
-    cout << "enter your numbers one at a time(end with a non-digit):\n";
+    cout << "Enter your numbers one at a time(end with a non-digit):\n";
     while (cin >> x)
         values.push_back(x);
 
