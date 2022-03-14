@@ -3,21 +3,36 @@
 #include <vector>
 using namespace std;
 
+class Record
+{
+public:
+    Record();
+    int number, quantity, price;
+};
+class Product
+{
+public:
+    vector<Record> productRecord;
+};
+
+Record::Record()
+{
+    number = 0;
+    quantity = 0;
+    price = 0;
+}
+
 int main()
 {
-    vector<int> number;
-    vector<int> quantity;
-    vector<int> price;
-
+    Record c;
+    Product p;
     while (true)
     {
-        cout << "Enter a record(product number, quantity, unit cost separated by spaces): ";
-        int n, q, p;
-        cin >> n >> q >> p;
 
-        number.push_back(n);
-        quantity.push_back(q);
-        price.push_back(p);
+        cout << "Enter a record(product number, quantity, unit cost separated by spaces): ";
+        cin >> c.number >> c.quantity >> c.price;
+
+        p.productRecord.push_back(c);
 
         cout << "Do you want to enter another record (y or n): ";
         char answer;
@@ -27,13 +42,13 @@ int main()
     }
 
     int total_cost = 0;
-    for (int i = 0; i < number.size(); ++i)
+    for (int i = 0; i < p.productRecord.size(); ++i)
     {
-        auto cost = quantity[i] * price[i];
+        auto cost = p.productRecord[i].quantity * p.productRecord[i].price;
         total_cost += cost;
-        cout << "Number: " << number[i] << ", "
-             << "Quantity: " << quantity[i] << ", "
-             << "Price: " << price[i] << ", "
+        cout << "Number: " << p.productRecord[i].number << ", "
+             << "Quantity: " << p.productRecord[i].quantity << ", "
+             << "Price: " << p.productRecord[i].price << ", "
              << "Price of the product: " << cost << endl;
     }
     cout << "Total cost of the products:  " << total_cost << endl;
