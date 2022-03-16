@@ -15,8 +15,6 @@ int main()
     {
         cout << *first + *last;
     }
-
     cout << endl;
-
     return 0;
 }
