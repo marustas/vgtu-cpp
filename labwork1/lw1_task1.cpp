@@ -34,24 +34,32 @@ string formatted(Distance t)
 
 int main()
 {
+    int x, y, a, b, z;
     Distance d1;
     Distance d2;
-    d1.convertFeet(6002);
-    d2.convertYards(5230);
-    cout << "6002 ft = " << formatted(d1) << endl;
-    cout << "5230 yd = " << formatted(d2) << endl;
+    cout << "Enter the amount of feet to convert: ";
+    cin >> x;
+    cout << "Enter the amount of yards to convert: ";
+    cin >> y;
+    d1.convertFeet(x);
+    d2.convertYards(y);
+    cout << x << " ft = " << formatted(d1) << endl;
+    cout << y << " yd = " << formatted(d2) << endl;
 
-    cout << "(" << formatted(d1) << ")";
-    d1.addFeet(10001);
-    cout << " + 10001 ft = " << formatted(d1) << endl;
+    cout << "Enter the amount of feet to add:";
+    cin >> a;
+    d1.addFeet(a);
+    cout << "The result of addding " << a << " ft = " << formatted(d1) << endl;
 
-    cout << "(" << formatted(d1) << ")";
-    d1.addYards(5000);
-    cout << " + 5000 yd = " << formatted(d1) << endl;
+    cout << "Enter the amount of yards to add:";
+    cin >> b;
+    d1.addYards(b);
+    cout << "The result of adding " << b << " yd = " << formatted(d1) << endl;
 
-    cout << "(" << formatted(d1) << ")";
-    d1.addMiles(10);
-    cout << " + 10 miles = " << formatted(d1) << endl;
+    cout << "Enter the amount of miles to add:";
+    cin >> z;
+    d1.addMiles(z);
+    cout << "The result of adding " << z << " miles = " << formatted(d1) << endl;
 }
 int Distance::getFeet() { return feet; }
 int Distance::getYards() { return yards; }
