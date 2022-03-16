@@ -1,6 +1,5 @@
 #include <vector>
 #include <iostream>
-#include <algorithm>
 using namespace std;
 bool palindrome(const vector<int> &);
 
