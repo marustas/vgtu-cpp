@@ -13,7 +13,7 @@ int main()
          first != last && first != --last;
          ++first)
     {
-        cout << *first + *last;
+        cout << *first + *last << " ";
     }
     cout << endl;
     return 0;
