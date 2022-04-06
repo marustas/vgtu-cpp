@@ -191,6 +191,16 @@ double Package::getWeight()
 {
     return weight;
 }
+
+void Package::setCost_per_ounce(double cost)
+{
+    cost_per_ounce = (cost < 0.0) ? 0.0 : cost;
+}
+double Package::getCost_per_ounce()
+{
+    return cost_per_ounce;
+}
+
 double Package::calculateCost()
 {
     return weight * cost_per_ounce;
