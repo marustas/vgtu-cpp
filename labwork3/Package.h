@@ -10,13 +10,13 @@ private:
     string sender_state;
     string sender_city;
     string sender_address;
-    string sender_ZIP_code;
+    string sender_ZIP;
 
     string recipient_name;
     string recipient_state;
     string recipient_city;
     string recipient_address;
-    string recipient_ZIP_code;
+    string recipient_ZIP;
 
     double weight;
     double cost_per_ounce;
@@ -64,5 +64,36 @@ public:
     double getCost_per_ounce();
 
     double calculateCost();
+};
+
+class TwoDayPackage : public Package
+{
+private:
+    double two_day_delivery_fee;
+
+public:
+    TwoDayPackage(string sender_n, string sender_addr, string sender_c, string sender_s, string sender_Z, string recipient_n,
+                  string recipient_addr, string recipient_c, string recipient_s,
+                  string recipient_Z, double w, double cost, double delivery_fee);
+
+    double getTwo_day_delivery_fee();
+    void setTwo_day_delivery_fee(double delivery_fee);
+    double calculateCost();
+};
+
+class OvernightPackage : public Package
+{
+private:
+    double overnight_delivery_fee;
+
+public:
+    OvernightPackage(string sender_n, string sender_addr, string sender_c,
+                     string sender_s, string sender_Z, string recipient_n, string recipient_addr,
+                     string recipient_c, string recipient_s, string recipient_Z, double w,
+                     double cost, double delivery_fee);
+
+    double calculateCost();
+    double getOvernight_delivery_fee();
+    void setOvernight_delivery_fee(double delivery_fee);
 };
 #endif
