@@ -239,11 +239,11 @@ double OvernightPackage::calculateCost()
 int main(int argc, char *argv[])
 {
     OvernightPackage p1("Clevelnd", "Boulevard 3/4", "Gravity Falls",
-                        "Arizona", "89754", "Griffin", "123 bent street", "Chicago", "Illionis",
-                        "87540", 12.00, 1.50, 1.10);
+                        "Arizona", "6789", "Griffin", "123 bent street", "Chicago", "Illionis",
+                        "9876", 12.00, 1.50, 1.10);
     TwoDayPackage p2("Quagmire", "987 1st Street", "Sacramento",
-                     "California", "87654", "Jo", "833 palm Street", "Miami", "Florida",
-                     "98763", 18.00, 1.05, 8.00);
+                     "California", "12345", "Jo", "833 palm Street", "Miami", "Florida",
+                     "54321", 18.00, 1.05, 8.00);
 
     cout << "_______________________________________\n";
     cout << "Overnight Delivery:\n";
@@ -274,8 +274,9 @@ int main(int argc, char *argv[])
     cout << "Recipient's address:    " << p2.getRecipient_address() << "\n";
     cout << "Recipient's city:       " << p2.getRecipient_city() << "\n";
     cout << "Recipient's state:      " << p2.getRecipient_state() << "\n";
-    cout << "recipient's ZIP code:   " << p2.getRecipient_ZIP() << "\n";
+    cout << "Recipient's ZIP code:   " << p2.getRecipient_ZIP() << "\n";
     cout << "Cost          $ " << p2.calculateCost() << endl;
     cout << "_______________________________________\n";
+    cout << "Total cost of the packages: " << p1.calculateCost() + p2.calculateCost() << endl;
     return 0;
 }
