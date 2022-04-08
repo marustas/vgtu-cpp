@@ -180,11 +180,13 @@ int main()
         cin >> type;
         if (type == 'y')
         {
+            t.twoday_fee = 0.0;
             cout << "Enter the overnight fee ";
             cin >> o.overnight_fee;
         }
         else if (type == 'n')
         {
+            o.overnight_fee = 0.0;
             cout << "Enter the twoday fee ";
             cin >> t.twoday_fee;
         }
@@ -199,16 +201,8 @@ int main()
     double total_cost = 0.0;
     for (int i = 0; i < s.sender.size(); ++i)
     {
-        if (type == 'y')
-        {
-            double overnight_c = c.cost[i].cost_per_ounce + o.overnight_fee;
-            package_cost = overnight_c * c.cost[i].weight;
-        }
-        else if (type == 'n')
-        {
-            package_cost = c.cost[i].weight * c.cost[i].cost_per_ounce + t.twoday_fee;
-        }
-
+        double mid_result = c.cost[i].cost_per_ounce + o.overnight_fee;
+        package_cost = c.cost[i].weight * mid_result + t.twoday_fee;
         total_cost += package_cost;
         cout << "Sender name: " << s.sender[i].sender_name << "\n"
              << "sender address: " << s.sender[i].sender_address << "\n"
