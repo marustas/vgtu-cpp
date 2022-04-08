@@ -1,99 +1,113 @@
-#ifndef _PACKAGE_
-#define _PACKAGE_
+#ifndef _PACKAGE_CLASS_
+#define _PACKAGE_CLASS_
+
+#include <iostream>
+#include <iomanip>
 #include <string>
 using namespace std;
 
 class Package
 {
-private:
+public:
     string sender_name;
+    string sender_address;
     string sender_state;
     string sender_city;
-    string sender_address;
     string sender_ZIP;
 
     string recipient_name;
+    string recipient_address;
     string recipient_state;
     string recipient_city;
-    string recipient_address;
     string recipient_ZIP;
 
     double weight;
     double cost_per_ounce;
 
-public:
-    Package(string sender_n, string sender_addr, string sender_c,
-            string sender_s, string sender_Z, string recipient_n, string recipient_addr,
-            string recipient_c, string recipient_s, string recipient_Z, double w,
-            double cost);
+    Package();
 
-    void setSender_name(string sender_n);
-    string getSender_name();
+    Package(double w, double cpo);
 
-    void setSender_sate(string sender_s);
-    string getSender_state();
+    // Setters and getters.
+    void setSenderName(string sender_n);
+    string getSenderName();
 
-    void setSender_city(string sender_c);
-    string getSender_city();
+    void setRecipientName(string recipient_n);
+    string getRecipientName();
 
-    void setSender_address(string sender_addr);
-    string getSender_address();
+    void setSenderAddress(string sender_a);
+    string getSenderAddress();
 
-    void setSender_ZIP(string sender_Z);
-    string getSender_ZIP();
+    void setRecipientAddress(string recipient_a);
+    string getRecipientAddress();
 
-    void setRecipient_name(string recipient_n);
-    string getRecipient_name();
+    void setSenderState(string sender_s);
+    string getSenderState();
 
-    void setRecipient_state(string recipient_s);
-    string getRecipient_state();
+    void setRecipientState(string recipient_s);
+    string getRecipientState();
 
-    void setRecipient_city(string recipient_c);
-    string getRecipient_city();
+    void setSenderCity(string sender_c);
+    string getSenderCity();
 
-    void setRecipient_address(string recipient_addr);
-    string getRecipient_address();
+    void setRecipientCity(string recipient_c);
+    string getRecipientCity();
 
-    void setRecipient_ZIP(string recipient_Z);
-    string getRecipient_ZIP();
+    void setSenderZIP(string sender_z);
+    string getSenderZIP();
+
+    void setRecipientZIP(string recipient_z);
+    string getRecipientZIP();
 
     void setWeight(double w);
     double getWeight();
 
-    void setCost_per_ounce(double cost);
-    double getCost_per_ounce();
+    void setCostPerOunce(double cpo);
+    double getCostPerOunce();
 
+    // Calcualte shipping cost.
     double calculateCost();
 };
 
-class TwoDayPackage : public Package
+class Sender_info : public Package
 {
-private:
-    double two_day_delivery_fee;
-
 public:
-    TwoDayPackage(string sender_n, string sender_addr, string sender_c, string sender_s, string sender_Z, string recipient_n,
-                  string recipient_addr, string recipient_c, string recipient_s,
-                  string recipient_Z, double w, double cost, double delivery_fee);
-
-    double getTwo_day_delivery_fee();
-    void setTwo_day_delivery_fee(double delivery_fee);
-    double calculateCost();
+    Sender_info(string sender_n, string sender_a, string sender_s, string sender_c, string sender_z);
 };
 
-class OvernightPackage : public Package
+class Recipient_info : public Package
 {
-private:
-    double overnight_delivery_fee;
-
-public:
-    OvernightPackage(string sender_n, string sender_addr, string sender_c,
-                     string sender_s, string sender_Z, string recipient_n, string recipient_addr,
-                     string recipient_c, string recipient_s, string recipient_Z, double w,
-                     double cost, double delivery_fee);
-
-    double calculateCost();
-    double getOvernight_delivery_fee();
-    void setOvernight_delivery_fee(double delivery_fee);
+    Recipient_info(string recipient_n, string recipient_a, string recipient_s, string recipient_c, string recipient_z);
 };
+
+class Sender
+{
+public:
+    vector<Package> sender;
+};
+
+class Recipient
+{
+public:
+    vector<Package> recipient;
+};
+
+class Cost
+{
+public:
+    vector<Package> cost;
+};
+
+class OvernightPackage
+{
+public:
+    double overnight_fee;
+};
+
+class TwodayPackage
+{
+public:
+    double twoday_fee;
+};
+
 #endif

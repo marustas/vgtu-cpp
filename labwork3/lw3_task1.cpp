@@ -1,282 +1,226 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
+#include <vector>
 #include "Package.h"
 using namespace std;
-
-void setSender_name(string sender_n);
-string getSender_name();
-
-void setSender_address(string sender_addr);
-string getSender_address();
-
-void setSender_city(string sender_c);
-string getSender_city();
-
-void setsender_state(string sender_s);
-string getsender_state();
-
-void setsender_ZIP(string sender_Z);
-string getsender_ZIP();
-
-void setrecipient_name(string recipient_n);
-string getrecipient_name();
-
-void setrecipient_address(string recipient_addr);
-string getrecipient_address();
-
-void setrecipient_city(string recipient_c);
-string getrecipient_city();
-
-void setrecipient_state(string recipient_s);
-string getrecipient_state();
-
-void setrecipient_ZIP(string recipient_Z);
-string getrecipient_ZIP();
-
-void setweight(double w);
-double getWeight();
-
-void setcostperounce(double cost);
-double getcostperounce();
-
-double calculateCost();
-
-Package::Package(string sender_n, string sender_addr, string sender_c, string sender_s, string sender_Z, string recipient_n, string recipient_a, string recipient_c, string recipient_s, string recipient_Z, double wei, double cost)
+Package::Package(){};
+Sender_info::Sender_info(string sender_n, string sender_a, string sender_s, string sender_c, string sender_z)
 {
     sender_name = sender_n;
-    sender_address = sender_addr;
-    sender_city = sender_c;
+    sender_address = sender_a;
     sender_state = sender_s;
-    sender_ZIP = sender_Z;
+    sender_city = sender_c;
+    sender_ZIP = sender_z;
+}
 
+Recipient_info::Recipient_info(string recipient_n, string recipient_a, string recipient_s, string recipient_c, string recipient_z)
+{
     recipient_name = recipient_n;
     recipient_address = recipient_a;
-    recipient_city = recipient_c;
     recipient_state = recipient_s;
-    recipient_ZIP = recipient_Z;
+    recipient_city = recipient_c;
+    recipient_ZIP = recipient_z;
+}
 
-    if (wei > 0.0 && cost > 0.0)
+Package::Package(double w, double cpo)
+{
     {
-        weight = wei;
-        cost_per_ounce = cost;
+        if (w > 0.0)
+            weight = w;
+        else
+            weight = 0.0;
     }
-    else
     {
-        weight = 0.0;
-        cost_per_ounce = 0.0;
+        if (cpo > 0.0)
+            cost_per_ounce = cpo;
+        else
+            cost_per_ounce = 0.0;
     }
 }
 
-void Package::setSender_name(string sender_n)
+void Package::setSenderName(string sender_n)
 {
     sender_name = sender_n;
 }
-string Package::getSender_name()
+string Package::getSenderName()
 {
     return sender_name;
 }
 
-void Package::setSender_address(string sender_addr)
-{
-    sender_address = sender_addr;
-}
-string Package::getSender_address()
-{
-    return sender_address;
-}
-
-void Package::setSender_city(string sender_c)
-{
-    sender_city = sender_c;
-}
-
-string Package::getSender_city()
-{
-    return sender_city;
-}
-
-void Package::setSender_sate(string sender_s)
-{
-    sender_state = sender_s;
-}
-string Package::getSender_state()
-{
-    return sender_state;
-}
-
-void Package::setSender_ZIP(string sender_Z)
-{
-    sender_ZIP = sender_Z;
-}
-string Package::getSender_ZIP()
-{
-    return sender_ZIP;
-}
-
-void Package::setRecipient_name(string recipient_n)
+void Package::setRecipientName(string recipient_n)
 {
     recipient_name = recipient_n;
 }
-string Package::getRecipient_name()
+string Package::getRecipientName()
 {
     return recipient_name;
 }
 
-void Package::setRecipient_address(string recipient_addr)
+void Package::setSenderAddress(string sender_a)
 {
-    recipient_address = recipient_addr;
+    sender_address = sender_a;
 }
-string Package::getRecipient_address()
+string Package::getSenderAddress()
+{
+    return sender_address;
+}
+
+void Package::setRecipientAddress(string recipient_a)
+{
+    recipient_address = recipient_a;
+}
+string Package::getRecipientAddress()
 {
     return recipient_address;
 }
 
-void Package::setRecipient_city(string recipient_c)
+void Package::setSenderState(string sender_s)
+{
+    sender_state = sender_s;
+}
+string Package::getSenderState()
+{
+    return sender_state;
+}
+
+void Package::setRecipientState(string recipient_s)
+{
+    recipient_state = recipient_s;
+};
+string Package::getRecipientState()
+{
+    return recipient_state;
+};
+
+void Package::setSenderCity(string sender_c)
+{
+    sender_city = sender_c;
+};
+string Package::getSenderCity()
+{
+    return sender_city;
+};
+
+void Package::setRecipientCity(string recipient_c)
 {
     recipient_city = recipient_c;
-}
-string Package::getRecipient_city()
+};
+string Package::getRecipientCity()
 {
     return recipient_city;
 }
 
-void Package::setRecipient_state(string recipient_s)
+void Package::setSenderZIP(string sender_z)
 {
-    recipient_state = recipient_s;
+    sender_ZIP = sender_z;
 }
-string Package::getRecipient_state()
+string Package::getSenderZIP()
 {
-    return recipient_state;
-}
+    return sender_ZIP;
+};
 
-void Package::setRecipient_ZIP(string recipient_Z)
+void Package::setRecipientZIP(string recipient_z)
 {
-    recipient_ZIP = recipient_Z;
+    recipient_ZIP = recipient_z;
 }
-string Package::getRecipient_ZIP()
+string Package::getRecipientZIP()
 {
     return recipient_ZIP;
 }
 
 void Package::setWeight(double w)
 {
-    weight = (w < 0.0) ? 0.0 : w;
+    if (w > 0.0)
+        weight = w;
+    else
+        weight = 0.0;
 }
-double Package::getWeight()
-{
-    return weight;
-}
+double Package::getWeight() { return weight; }
 
-void Package::setCost_per_ounce(double cost)
+void Package::setCostPerOunce(double cpo)
 {
-    cost_per_ounce = (cost < 0.0) ? 0.0 : cost;
+    if (cpo > 0.0)
+        cost_per_ounce = cpo;
+    else
+        cost_per_ounce = 0.0;
 }
-double Package::getCost_per_ounce()
+double Package::getCostPerOunce()
 {
     return cost_per_ounce;
 }
 
 double Package::calculateCost()
 {
-    double result;
-    result = weight * cost_per_ounce;
-    return result;
+    return weight * cost_per_ounce;
 }
-
-TwoDayPackage::TwoDayPackage(string sender_n, string sender_addr,
-                             string sender_c, string sender_s, string sender_Z, string recipient_n,
-                             string recipient_addr, string recipient_c, string recipient_s,
-                             string recipient_Z, double w, double cost, double delivery_fee)
-    : Package(sender_n, sender_addr, sender_c, sender_s, sender_Z, recipient_n,
-              recipient_addr, recipient_c, recipient_s, recipient_Z, w, cost)
+int main()
 {
-    setTwo_day_delivery_fee(delivery_fee);
-}
+    Package p;
+    Sender s;
+    Recipient r;
+    Cost c;
+    OvernightPackage o;
+    TwodayPackage t;
+    char type;
+    while (true)
+    {
+        cout << "Enter sender information(Name,Address,State, City,ZIP code): ";
+        cin >> p.sender_name >> p.sender_address >> p.sender_state >> p.sender_city >> p.sender_ZIP;
+        s.sender.push_back(p);
 
-double TwoDayPackage::getTwo_day_delivery_fee()
-{
-    return two_day_delivery_fee;
-}
-void TwoDayPackage::setTwo_day_delivery_fee(double delivery_fee)
-{
-    two_day_delivery_fee = delivery_fee;
-}
+        cout << "Enter recipient information(Name,Address,State, City,ZIP code): ";
+        cin >> p.recipient_name >> p.recipient_address >> p.recipient_state >> p.recipient_city >> p.recipient_ZIP;
+        r.recipient.push_back(p);
 
-double TwoDayPackage::calculateCost()
-{
-    double result;
-    result = Package::calculateCost() + two_day_delivery_fee;
-    return result;
-}
+        cout << "Enter the weight and cost per ounce of the package: ";
+        cin >> p.weight >> p.cost_per_ounce;
+        c.cost.push_back(p);
 
-OvernightPackage::OvernightPackage(string sender_n, string sender_addr,
-                                   string sender_c, string sender_s, string sender_Z, string recipient_n,
-                                   string recipient_addr, string recipient_c, string recipient_s,
-                                   string recipient_Z, double w, double cost, double delivery_fee)
-    : Package(sender_n, sender_addr, sender_c, sender_s, sender_Z, recipient_n,
-              recipient_addr, recipient_c, recipient_s, recipient_Z, w, cost)
-{
-    setOvernight_delivery_fee(delivery_fee);
-}
+        cout << "Is it an overnight package(y or n):";
+        cin >> type;
+        if (type == 'y')
+        {
+            cout << "Enter the overnight fee ";
+            cin >> o.overnight_fee;
+        }
+        else if (type == 'n')
+        {
+            cout << "Enter the twoday fee ";
+            cin >> t.twoday_fee;
+        }
 
-double OvernightPackage::getOvernight_delivery_fee()
-{
-    return overnight_delivery_fee;
-}
-void OvernightPackage::setOvernight_delivery_fee(double delivery_fee)
-{
-    overnight_delivery_fee = delivery_fee;
-}
+        cout << "Do you want to enter another record (y or n): ";
+        char answer;
+        cin >> answer;
+        if (answer == 'n')
+            break;
+    }
+    double package_cost = 0.0;
+    double total_cost = 0.0;
+    for (int i = 0; i < s.sender.size(); ++i)
+    {
+        if (type == 'y')
+        {
+            double overnight_c = c.cost[i].cost_per_ounce + o.overnight_fee;
+            package_cost = overnight_c * c.cost[i].weight;
+        }
+        else if (type == 'n')
+        {
+            package_cost = c.cost[i].weight * c.cost[i].cost_per_ounce + t.twoday_fee;
+        }
 
-double OvernightPackage::calculateCost()
-{
-    double result;
-    result = (getCost_per_ounce() + overnight_delivery_fee) * getWeight();
-    return result;
-}
-
-int main(int argc, char *argv[])
-{
-    OvernightPackage p1("Clevelnd", "Boulevard 3/4", "Gravity Falls",
-                        "Arizona", "6789", "Griffin", "123 bent street", "Chicago", "Illionis",
-                        "9876", 12.00, 1.50, 1.10);
-    TwoDayPackage p2("Quagmire", "987 1st Street", "Sacramento",
-                     "California", "12345", "Jo", "833 palm Street", "Miami", "Florida",
-                     "54321", 18.00, 1.05, 8.00);
-
-    cout << "_______________________________________\n";
-    cout << "Overnight Delivery:\n";
-    cout << "Sender:" << setw(20) << p1.getSender_name() << "\n";
-    cout << "Sender's address:  " << p1.getSender_address() << "\n";
-    cout << "Sender's city:     " << setw(11) << p1.getSender_city() << "\n";
-    cout << "Sender's state: " << setw(10) << p1.getSender_state() << "\n";
-    cout << "Sender's ZIP code: " << setw(5) << p1.getSender_ZIP() << "\n";
-    cout << "\n";
-    cout << "Recipient:    " << setw(15) << p1.getRecipient_name() << "\n";
-    cout << "Recipient's address:  " << p1.getRecipient_address() << "\n";
-    cout << "Recipient's city: " << setw(11) << p1.getRecipient_city() << "\n";
-    cout << "Recipient's state:  " << setw(10) << p1.getRecipient_state() << "\n";
-    cout << "Recipient's ZIP code: " << setw(5) << p1.getRecipient_ZIP() << "\n";
-    cout << "Cost          $ " << p1.calculateCost() << endl;
-    cout << "_______________________________________\n";
-
-    cout << "\n\n";
-    cout << "_______________________________________\n";
-    cout << "2 Day Delivery:\n";
-    cout << "Sender:             " << p2.getSender_name() << "\n";
-    cout << "Sender's address:   " << p2.getSender_address() << "\n";
-    cout << "Sender's city:      " << p2.getSender_city() << "\n";
-    cout << "Sender's state:     " << p2.getSender_state() << "\n";
-    cout << "Sender's ZIP code:  " << p2.getSender_ZIP() << "\n";
-    cout << "\n";
-    cout << "Recipient:              " << p2.getRecipient_name() << "\n";
-    cout << "Recipient's address:    " << p2.getRecipient_address() << "\n";
-    cout << "Recipient's city:       " << p2.getRecipient_city() << "\n";
-    cout << "Recipient's state:      " << p2.getRecipient_state() << "\n";
-    cout << "Recipient's ZIP code:   " << p2.getRecipient_ZIP() << "\n";
-    cout << "Cost          $ " << p2.calculateCost() << endl;
-    cout << "_______________________________________\n";
-    cout << "Total cost of the packages: " << p1.calculateCost() + p2.calculateCost() << endl;
-    return 0;
+        total_cost += package_cost;
+        cout << "Sender name: " << s.sender[i].sender_name << "\n"
+             << "sender address: " << s.sender[i].sender_address << "\n"
+             << "Sender state: " << s.sender[i].sender_state << "\n"
+             << "Sender city: " << s.sender[i].sender_city << "\n"
+             << "Sender ZIP code: " << s.sender[i].sender_ZIP << "\n\n"
+             << "Recipient name: " << r.recipient[i].recipient_name << "\n"
+             << "Recipient address: " << r.recipient[i].recipient_address << "\n"
+             << "Recipient state: " << r.recipient[i].recipient_state << "\n"
+             << "recipient city: " << r.recipient[i].recipient_city << "\n"
+             << "recipient ZIP code: " << r.recipient[i].recipient_ZIP << "\n"
+             << "Price of the package: " << package_cost << "\n\n";
+    }
+    cout << "Total cost of the packages:  " << total_cost << endl;
 }
