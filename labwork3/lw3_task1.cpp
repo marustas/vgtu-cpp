@@ -175,7 +175,7 @@ int main()
     vector<Package *> packages(3);
     packages[0] = new Package("Stas", "Belarus", "Minsk", "Bedy 2b", 123, "Vlad", "Belarus", "Gomel", "Kiseleva 9", 456, 10.0, 10.0);
     packages[1] = new OvernightPackage("Igor", "Russia", "Moscow", "Nervasta", 568, "Kolya", "Belarus", "Mogilev", "Neresta", 934, 13.0, 14.0, 2.0);
-    packages[2] = new TwodayPackage("Algimantas", "Lithuania", "Vilnius", "Sauleteko 16", 639, "Hleb", "Spain", "Madris", "Kalvariyskaya", 297, 11.0, 12.0, 2.0);
+    packages[2] = new TwodayPackage("Algimantas", "Lithuania", "Vilnius", "Sauleteko 16", 639, "Hleb", "Spain", "Madris", "Kalvariyskaya", 297, 11.0, 12.0, 6.0);
     double total_cost = 0.0;
     for (size_t i = 0; i < packages.size(); i++)
     {

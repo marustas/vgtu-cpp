@@ -65,7 +65,7 @@ public:
     void setCostPerOunce(double);
     double getCostPerOunce() const;
 
-    double calculateCost() const;
+   virtual double calculateCost() const;
 };
 
 class TwodayPackage : public Package
@@ -78,7 +78,7 @@ public:
                   const string &, const string &, const string &, const string &, int, double, double, double);
     void setTwodayFee(double);
     double getTwodayFee() const;
-    double calculateCost() const;
+    virtual double calculateCost() const;
 };
 
 class OvernightPackage : public Package
@@ -91,7 +91,7 @@ public:
                      const string &, const string &, const string &, const string &, int, double, double, double);
     void setOvernightFee(double);
     double getOvernightFee() const;
-    double calculateCost() const;
+    virtual double calculateCost() const;
 };
 
 #endif
