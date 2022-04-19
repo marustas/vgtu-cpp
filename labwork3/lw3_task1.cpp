@@ -149,10 +149,6 @@ double Package::getCostPerOunce()
     return cost_per_ounce;
 }
 
-double Package::calculateCost()
-{
-    return weight * cost_per_ounce;
-}
 int main()
 {
     Package p;
@@ -161,7 +157,7 @@ int main()
     Cost c;
     OvernightPackage o;
     TwodayPackage t;
-    char type;
+    int type;
     int n;
     double package_cost = 0.0;
     double total_cost = 0.0;
@@ -182,20 +178,25 @@ int main()
         cin >> p.weight >> p.cost_per_ounce;
         c.cost.push_back(p);
 
-        cout << "Is it an overnight package(y or n):";
+        cout << "Enter type of the package(1 for overnight, 2 for twoday and regular as default option):";
         cin >> type;
-        if (type == 'y')
+        switch (type)
         {
+        case 1:
             cout << "Enter the overnight fee ";
             cin >> o.overnight_fee;
-            double overnight_c = c.cost[i].cost_per_ounce + o.overnight_fee;
-            package_cost = overnight_c * c.cost[i].weight;
-        }
-        else if (type == 'n')
-        {
+            package_cost = (c.cost[i].cost_per_ounce + o.overnight_fee) * c.cost[i].weight;
+            break;
+
+        case 2:
             cout << "Enter the twoday fee ";
             cin >> t.twoday_fee;
             package_cost = c.cost[i].weight * c.cost[i].cost_per_ounce + t.twoday_fee;
+            break;
+
+        default:
+            package_cost = c.cost[i].weight * c.cost[i].cost_per_ounce;
+            break;
         }
         total_cost += package_cost;
         cout << "Sender name: " << s.sender[i].sender_name << "\n"

@@ -64,9 +64,6 @@ public:
 
     void setCostPerOunce(double cpo);
     double getCostPerOunce();
-
-    // Calcualte shipping cost.
-    double calculateCost();
 };
 
 class Sender_info : public Package
