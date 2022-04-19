@@ -8,90 +8,106 @@ using namespace std;
 
 class Package
 {
-private:
-    string Sender_name;
-    string Sender_address;
-    string Sender_state;
-    string Sender_city;
-    int Sender_ZIP;
+public:
+    string sender_name;
+    string sender_address;
+    string sender_state;
+    string sender_city;
+    string sender_ZIP;
 
-    string Recipient_name;
-    string Recipient_address;
-    string Recipient_state;
-    string Recipient_city;
-    int Recipient_ZIP;
+    string recipient_name;
+    string recipient_address;
+    string recipient_state;
+    string recipient_city;
+    string recipient_ZIP;
 
     double weight;
     double cost_per_ounce;
 
-public:
-    Package(const string &, const string &, const string &, const string &, int,
-            const string &, const string &, const string &, const string &, int, double, double);
+    Package();
+
+    Package(double w, double cpo);
 
     // Setters and getters.
-    void setSenderName(const string &);
-    string getSenderName() const;
+    void setSenderName(string sender_n);
+    string getSenderName();
 
-    void setRecipientName(const string &);
-    string getRecipientName() const;
+    void setRecipientName(string recipient_n);
+    string getRecipientName();
 
-    void setSenderAddress(const string &);
-    string getSenderAddress() const;
+    void setSenderAddress(string sender_a);
+    string getSenderAddress();
 
-    void setRecipientAddress(const string &);
-    string getRecipientAddress() const;
+    void setRecipientAddress(string recipient_a);
+    string getRecipientAddress();
 
-    void setSenderState(const string &);
-    string getSenderState() const;
+    void setSenderState(string sender_s);
+    string getSenderState();
 
-    void setRecipientState(const string &);
-    string getRecipientState() const;
+    void setRecipientState(string recipient_s);
+    string getRecipientState();
 
-    void setSenderCity(const string &);
-    string getSenderCity() const;
+    void setSenderCity(string sender_c);
+    string getSenderCity();
 
-    void setRecipientCity(const string &);
-    string getRecipientCity() const;
+    void setRecipientCity(string recipient_c);
+    string getRecipientCity();
 
-    void setSenderZIP(int);
-    int getSenderZIP() const;
+    void setSenderZIP(string sender_z);
+    string getSenderZIP();
 
-    void setRecipientZIP(int);
-    int getRecipientZIP() const;
+    void setRecipientZIP(string recipient_z);
+    string getRecipientZIP();
 
-    void setWeight(double);
-    double getWeight() const;
+    void setWeight(double w);
+    double getWeight();
 
-    void setCostPerOunce(double);
-    double getCostPerOunce() const;
+    void setCostPerOunce(double cpo);
+    double getCostPerOunce();
 
-   virtual double calculateCost() const;
+    // Calcualte shipping cost.
+    double calculateCost();
 };
 
-class TwodayPackage : public Package
+class Sender_info : public Package
 {
-private:
-    double twoday_fee;
-
 public:
-    TwodayPackage(const string &, const string &, const string &, const string &, int,
-                  const string &, const string &, const string &, const string &, int, double, double, double);
-    void setTwodayFee(double);
-    double getTwodayFee() const;
-    virtual double calculateCost() const;
+    Sender_info(string sender_n, string sender_a, string sender_s, string sender_c, string sender_z);
 };
 
-class OvernightPackage : public Package
+class Recipient_info : public Package
 {
-private:
+    Recipient_info(string recipient_n, string recipient_a, string recipient_s, string recipient_c, string recipient_z);
+};
+
+class Sender
+{
+public:
+    vector<Package> sender;
+};
+
+class Recipient
+{
+public:
+    vector<Package> recipient;
+};
+
+class Cost
+{
+public:
+    vector<Package> cost;
+};
+
+class OvernightPackage
+{
+public:
     double overnight_fee;
+};
 
+class TwodayPackage
+{
 public:
-    OvernightPackage(const string &, const string &, const string &, const string &, int,
-                     const string &, const string &, const string &, const string &, int, double, double, double);
-    void setOvernightFee(double);
-    double getOvernightFee() const;
-    virtual double calculateCost() const;
+    double twoday_fee;
 };
 
 #endif
